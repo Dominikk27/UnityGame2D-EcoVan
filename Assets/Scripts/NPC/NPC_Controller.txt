@@ -1,0 +1,57 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class NPCController : MonoBehaviour
+{
+    public float movementSpeed = 0.1f;
+    public float stoppingDistance = 0.2f;
+    public bool NPC_ReachedStore = false;
+
+    private Transform target;
+
+
+    void Start()
+    {
+        target = Camera.main.transform;
+    }
+
+    void Update()
+    {
+        if (!NPC_ReachedStore){
+            moveToStore();
+        }
+        else{
+            stopMove();
+        }
+    }
+
+    void moveToStore(){
+        Vector3 moveDirection = (target.position - transform.position).normalized;
+        transform.Translate(moveDirection * movementSpeed * Time.deltaTime);
+
+        if (Vector3.Distance(transform.position, target.position) < stoppingDistance)
+        {
+            Debug.Log("I am There");
+            inStore();
+            NPC_ReachedStore = true;
+
+            //gotToStore();
+            //Destroy(gameObject);
+        }
+    }
+
+    void stopMove(){
+        Debug.Log("NPC STOPPED");
+        GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+    }
+
+    void inStore(){
+        print("I am in store");
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        //Debug.Log("Whops!");
+    }
+}

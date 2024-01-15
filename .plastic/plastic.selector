@@ -1,0 +1,3 @@
+rep "New_MT@New_MT_GAME@cloud"
+  path "/"
+    smartbranch "/main"
