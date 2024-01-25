@@ -28,6 +28,7 @@ public class SelectMaterial : MonoBehaviour
     private bool correctMaterial_selected;
     private int pickedIndex;
 
+    /*===============[ INIT ]===============*/
     void Start()
     {   
         materialSelected = DataToStore.pickedMaterial;
@@ -35,7 +36,7 @@ public class SelectMaterial : MonoBehaviour
         productMaterial = DataToStore.productMaterial;
         correctMaterial_selected = DataToStore.pickedCorrect_material;
         
-
+        /*===============[ Check/Show Material Selection ]===============*/
         if(!materialSelected){
             currentIndex = 0;
             MaterialStatus.enabled = false;
@@ -84,6 +85,8 @@ public class SelectMaterial : MonoBehaviour
 
     }
 
+
+    /*===============[ Set Next Material ]===============*/
     public void ShowNextImage()
     {
         if(!materialSelected){
@@ -114,6 +117,7 @@ public class SelectMaterial : MonoBehaviour
         }
     }
 
+    /*===============[ Set Previouse Material ]===============*/
     public void ShowPreviousImage()
     {
         if (!materialSelected){
@@ -141,6 +145,7 @@ public class SelectMaterial : MonoBehaviour
     }
 
 
+    /*===============[ Select Material ]===============*/
     public void pickMaterial(){
         string normalizedProductMaterial = productMaterial.ToLower();
         string normalizedPickedMaterial = currentSprite.name.ToLower();
@@ -171,16 +176,5 @@ public class SelectMaterial : MonoBehaviour
 
 
         }
-    }
-
-
-
-
-    
-
-    // Update is called once per frame
-    void Update()
-    {
-        //Debug.Log("Material je: " + currentSprite.name);
     }
 }

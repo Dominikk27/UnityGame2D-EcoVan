@@ -6,17 +6,20 @@ using TMPro;
 
 public class RecieveStats : MonoBehaviour
 {
-    private string MoneyBar = "MoneyBar";
+    private string MoneyBar = "MoneyBar"; 
 
     private int get_CurrentMoney;
 
     private string currentMoney;
 
+    /*===============[ First Init ]===============*/
     private void Awake()
     {
         get_CurrentMoney = DataToStore.currentMoney;
     }
 
+
+    /*===============[ Init ]===============*/
     void Start()
     {
         get_CurrentMoney = DataToStore.currentMoney;
@@ -24,10 +27,10 @@ public class RecieveStats : MonoBehaviour
         Image moneyBarImage = GetComponentInChildren<Image>();
         if (moneyBarImage != null)
         {
-            TextMeshProUGUI moneyVal = moneyBarImage.GetComponentInChildren<TextMeshProUGUI>();
+            TextMeshProUGUI moneyVal = moneyBarImage.GetComponentInChildren<TextMeshProUGUI>(); //Get Element
             if (moneyVal != null)
             {
-                moneyVal.text = currentMoney;
+                moneyVal.text = currentMoney; // Print Money
             }
         }
     }
@@ -38,38 +41,3 @@ public class RecieveStats : MonoBehaviour
     
     }
 }
-
-
-
-/* Backup
- public Canvas inGameCanv;
-    private string MoneyBar = "MoneyBar";
-
-    private int get_CurrentMoney;
-
-    private string currentMoney;
-
-
-    private void Awake(){
-        get_CurrentMoney = DataToStore.currentMoney;
-    }
-
-    void Start()
-    {
-        currentMoney = get_CurrentMoney.ToString();
-        Image MoneyBar = inGameCanv.GetComponentInChildren<Image>();
-        if (MoneyBar != null){
-            TextMeshProUGUI MoneyVal = MoneyBar.GetComponentInChildren<TextMeshProUGUI>();
-        if(MoneyVal != null){
-            MoneyVal.text = currentMoney;
-        }
-      }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-*/

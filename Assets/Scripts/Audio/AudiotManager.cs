@@ -13,6 +13,9 @@ public class AudiotManager : MonoBehaviour
     public AudioClip background;
 
     public static AudiotManager instance;
+    private float _volume;
+    private bool _isMuted;
+    
     private void Awake()
     {
         if (instance == null)
@@ -29,13 +32,34 @@ public class AudiotManager : MonoBehaviour
 
     void Start()
     {
-        musicSource.clip= background;
+        musicSource.clip = background;
+        _isMuted = false;
         musicSource.Play();
+        _volume = musicSource.volume;
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void MuteSwitch() {
+        if (_isMuted)
+        {
+            instance.musicSource.volume = _volume;
+            _isMuted = false;
+        }
+        else
+        {
+            _volume = instance.musicSource.volume;
+            instance.musicSource.volume = 0;
+            _isMuted = true;
+        }
+    }
+
+    public bool isMuted()
+    {
+        return _isMuted;
     }
 }

@@ -9,7 +9,7 @@ public class LineController : MonoBehaviour
     private Vector3 lastPointPosition;
 
     private bool finishClothes = false;
-    private Vector3 tshirtSpawnPosition = new Vector3(-0.11f, 0.3f, -0.8f);
+    private Vector3 tshirtSpawnPosition = new Vector3(-0.11f, 0.3f, -0.8f); //Position of Tshirt (Spawn)
 
     private GameObject foundTaskCanvas;
     private CheckStatus checkProduct;
@@ -24,8 +24,9 @@ public class LineController : MonoBehaviour
 
     void Awake()
     {
-        lr = GetComponent<LineRenderer>();
+        lr = GetComponent<LineRenderer>(); //Get component LineRender
     }
+
 
     void Start()
     {
@@ -42,6 +43,7 @@ public class LineController : MonoBehaviour
         }
     }
 
+    /*===============[ Draw Line ]===============*/
     private void CreateLine(Vector3 finalPointPosition)
     {
         if (!pointPositions.Contains(finalPointPosition))
@@ -67,6 +69,8 @@ public class LineController : MonoBehaviour
         }
     }
 
+
+    /*===============[ Setup Line ]===============*/
     private void SetupLine()
     {
         int pointLength = pointPositions.Count;
@@ -77,6 +81,7 @@ public class LineController : MonoBehaviour
         }
     }
 
+    /*===============[ Click Checker ]===============*/
     void Update()
     {
         if (Input.GetMouseButtonDown(0) && !finishClothes)
@@ -98,6 +103,7 @@ public class LineController : MonoBehaviour
         }
     }
 
+    /*===============[ Move by points ]===============*/
     void MoveToLastPoint()
     {
         if (pointPositions.Count > 1)
@@ -124,6 +130,7 @@ public class LineController : MonoBehaviour
     }
 
 
+    /*===============[ Finisher ]===============*/
     void _finishClothes(){
         Debug.Log("Task FINISH!!");
         if(materialObj != null){

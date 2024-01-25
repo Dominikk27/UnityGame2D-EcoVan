@@ -56,7 +56,7 @@ public class Pause : MonoBehaviour
 
     }
 
-    public void pauseMenu(){
+    public void pauseMenu() {
         //Debug.Log("Clicked PauseButton " + menuIsActive);
         if(!menuIsActive){
             Time.timeScale = 0f;
@@ -70,7 +70,10 @@ public class Pause : MonoBehaviour
         }
     }
 
-
+    public void muteButton()
+    {
+        AudiotManager.instance.MuteSwitch();
+    }
 
     public void mainMenu(){
         //Debug.Log("Clicked PauseButton " + menuIsActive);
@@ -78,4 +81,8 @@ public class Pause : MonoBehaviour
 
     }
 
+    public bool isMuted()
+    {
+        return AudiotManager.instance.isMuted();
+    }
 }

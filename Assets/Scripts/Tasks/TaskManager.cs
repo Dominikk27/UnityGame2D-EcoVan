@@ -23,6 +23,7 @@ public class TaskManager : MonoBehaviour
     private List<MaterialTyp> materialy;
 
 
+    public bool tutorial_played;
     public string FactorySceneName;
 
     /*===============[ Start INIT ]===============*/
@@ -112,18 +113,35 @@ public class TaskManager : MonoBehaviour
     /*===============[ Accept Offer ]===============*/
     public void AcceptOffer(){
         //Debug.Log(FactorySceneName);
-        string productToStore = productName;
-        string materialToStore = productMaterial;
-        int productPriceToStore = productPrice;
-        DataToStore.productFinished = false;
-        DataToStore.pickedMaterial = false;
 
-        DataToStore.payout = productPriceToStore;
-        DataToStore.productName = productToStore;   
-        DataToStore.productMaterial = materialToStore; 
-        SceneManager.LoadScene(FactorySceneName);
-        
-        Destroy(gameObject);
+        if(!tutorial_played){
+            string productToStore = productName;
+            string materialToStore = productMaterial;
+            int productPriceToStore = productPrice;
+            DataToStore.productFinished = false;
+            DataToStore.pickedMaterial = false;
+
+            DataToStore.payout = productPriceToStore;
+            DataToStore.productName = productToStore;   
+            DataToStore.productMaterial = materialToStore; 
+            SceneManager.LoadScene("Factory_Scene_Tutorial");
+            
+            Destroy(gameObject);
+        }
+        else{
+            string productToStore = productName;
+            string materialToStore = productMaterial;
+            int productPriceToStore = productPrice;
+            DataToStore.productFinished = false;
+            DataToStore.pickedMaterial = false;
+
+            DataToStore.payout = productPriceToStore;
+            DataToStore.productName = productToStore;   
+            DataToStore.productMaterial = materialToStore; 
+            SceneManager.LoadScene(FactorySceneName);
+            
+            Destroy(gameObject);
+        }
 
     }
 

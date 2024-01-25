@@ -21,15 +21,24 @@ public class NPC_Controller : MonoBehaviour
     private Transform getCurrentPosition;
     private float CurrentPosition;
 
+
+
+
+    private bool tutorial_played;
+    TutorialUI tutorialUI;
+
    /*===============[ START INIT ]===============*/
     void Start()
     {
+        tutorialUI = FindObjectOfType<TutorialUI>();
+        tutorial_played = DataToStore.tutorial_played;
         rigidbody = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
 
         sManager = FindObjectOfType<SpawnManager>();
         TaskCard = FindObjectOfType<TaskManager>().gameObject;
         taskManager = TaskCard.GetComponent<TaskManager>();
+
     }
 
    /*===============[ Update Check ]===============*/
@@ -60,10 +69,20 @@ public class NPC_Controller : MonoBehaviour
 
 
     public void arrivedToStore(){
-        inStore = true;
-        sManager.enableSpawn(false);
-        rigidbody.velocity = Vector2.zero;
-        taskManager.createTaskCard(gameObject.name);
+        if(!tutorial_played){
+            DataToStore.tutorialScene = 2;
+            tutorialUI.NPC_InStoreTutorial();
+            inStore = true;
+            sManager.enableSpawn(false);
+            rigidbody.velocity = Vector2.zero;
+            taskManager.createTaskCard(gameObject.name);
+        }
+        else{
+            inStore = true;
+            sManager.enableSpawn(false);
+            rigidbody.velocity = Vector2.zero;
+            taskManager.createTaskCard(gameObject.name);
+        }
     }
 
 
@@ -74,7 +93,6 @@ public class NPC_Controller : MonoBehaviour
       //Debug.Log("inStore" + inStore);
       //Debug.Log("leaveStore" + leaveStore);
     }
-
 
     void moveToDestroy(){
         rigidbody.velocity = new Vector2(-MovementSpeed, 0);

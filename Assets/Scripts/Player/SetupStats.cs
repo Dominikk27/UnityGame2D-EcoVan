@@ -9,6 +9,6 @@ public class SetupStats : MonoBehaviour
     public int StartMoney = 500;
 
     private void Awake(){
-        DataToStore.currentMoney = StartMoney; 
+        DataToStore.currentMoney = StartMoney;   //Save to Static
     }
 }

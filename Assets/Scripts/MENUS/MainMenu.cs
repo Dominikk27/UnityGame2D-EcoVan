@@ -6,10 +6,21 @@ public class MainMenu : MonoBehaviour
 {
     
     public int StartMoney = 500;
+
+    private bool tutorial_played;
     
     public void PlayGame()
     {
-        SceneManager.LoadSceneAsync("City_Scene");
+        tutorial_played = DataToStore.tutorial_played;
+
+        if (!tutorial_played){
+            DataToStore.tutorialScene = 1;
+            SceneManager.LoadSceneAsync("City_Scene_Tutorial");
+        } 
+        else{
+            SceneManager.LoadSceneAsync("City_Scene");
+        }
+        
     }
 
     public void OpenSettings()

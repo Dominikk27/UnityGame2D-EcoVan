@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class DataToStore : MonoBehaviour
 {
+    /*================== Tutorial Stats To Store ==================*/
+    public static bool tutorial_played;
+    public static int tutorialScene;
+
+
 
     /*================== Player Stats To Store ==================*/
     public static int currentMoney;
@@ -18,7 +23,7 @@ public class DataToStore : MonoBehaviour
     public static bool pickedCorrect_material;    
     public static bool correctMaterial;
     public static bool productFinished;
-
+    public static bool isSelected;
 
 
     /*================== Payout Variables To Store ==================*/
