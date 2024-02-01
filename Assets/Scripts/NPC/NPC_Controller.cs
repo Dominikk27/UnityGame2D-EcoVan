@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class NPC_Controller : MonoBehaviour
 {
    /*===============[ Variables ]===============*/
-    public float MovementSpeed = 2.0f;
+    public float MovementSpeed = 2.5f;
     private Rigidbody2D rigidbody;
     private Animator anim;
 
@@ -44,6 +45,7 @@ public class NPC_Controller : MonoBehaviour
    /*===============[ Update Check ]===============*/
     void Update()
     {
+
         anim.SetBool("isWalking", rigidbody.velocity.x != 0);
         if(!inStore && !leaveStore){
             getCurrentPosition = transform;
@@ -69,6 +71,8 @@ public class NPC_Controller : MonoBehaviour
 
 
     public void arrivedToStore(){
+        tutorial_played = DataToStore.tutorial_played;
+        Debug.Log("Tutorial_PLAYED: " + tutorial_played);
         if(!tutorial_played){
             DataToStore.tutorialScene = 2;
             tutorialUI.NPC_InStoreTutorial();
@@ -99,6 +103,15 @@ public class NPC_Controller : MonoBehaviour
         CurrentPosition = getCurrentPosition.position.x;
         if (Mathf.Abs(CurrentPosition - DestroyPosition) < 0.1f){
             Destroy(gameObject);
+            switch(tutorial_played){
+                case true:
+                    SceneManager.LoadScene("City_Scene");
+                break;
+                case false:
+                    DataToStore.tutorialScene = 1;
+                    SceneManager.LoadScene("City_Scene_Tutorial");
+                break;
+            }
         }
     }
 

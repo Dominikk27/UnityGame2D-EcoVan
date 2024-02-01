@@ -20,6 +20,8 @@ public class CheckStatus : MonoBehaviour
     private int getCurrentMoney;
     private int payout;
 
+    private bool tutorial_played;
+
 
     // Start is called before the first frame update
     void Start()
@@ -62,22 +64,41 @@ public class CheckStatus : MonoBehaviour
     }
 
     public void sellToCustomer(){
-        if(!correctMaterial){
-            getCurrentMoney = DataToStore.currentMoney;
-            payoutMoney = DataToStore.payout;
-            payoutMoney = payoutMoney / 2;
-            DataToStore.currentMoney = getCurrentMoney + payoutMoney;
-            SceneManager.LoadScene("City_Scene");
-        }
-        else{
-            getCurrentMoney = DataToStore.currentMoney;
-            payoutMoney = DataToStore.payout;
-            DataToStore.currentMoney = getCurrentMoney + payoutMoney;
-            SceneManager.LoadScene("City_Scene");
+        tutorial_played = DataToStore.tutorial_played;
+        switch(tutorial_played){
+            case true:
+                if(!correctMaterial){
+                    getCurrentMoney = DataToStore.currentMoney;
+                    payoutMoney = DataToStore.payout;
+                    payoutMoney = payoutMoney / 2;
+                    DataToStore.currentMoney = getCurrentMoney + payoutMoney;
+                    SceneManager.LoadScene("City_Scene");
+                }
+                else{
+                    getCurrentMoney = DataToStore.currentMoney;
+                    payoutMoney = DataToStore.payout;
+                    DataToStore.currentMoney = getCurrentMoney + payoutMoney;
+                    SceneManager.LoadScene("City_Scene");
+                }
+            break;
+            case false:
+                DataToStore.tutorial_played = true;
+                if(!correctMaterial){
+                    getCurrentMoney = DataToStore.currentMoney;
+                    payoutMoney = DataToStore.payout;
+                    payoutMoney = payoutMoney / 2;
+                    DataToStore.currentMoney = getCurrentMoney + payoutMoney;
+                    SceneManager.LoadScene("City_Scene");
+                }
+                else{
+                    getCurrentMoney = DataToStore.currentMoney;
+                    payoutMoney = DataToStore.payout;
+                    DataToStore.currentMoney = getCurrentMoney + payoutMoney;
+                    SceneManager.LoadScene("City_Scene");
+                }
+            break;
         }
     }
-
-
     public void previousScene(){
         SceneManager.LoadScene("Factory_Scene");
     }

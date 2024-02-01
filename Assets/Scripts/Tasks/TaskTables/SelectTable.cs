@@ -39,21 +39,57 @@ public class SelectTable : MonoBehaviour
 
 
     public void changeScene(string workBenchName){
-        if(workBenchName == "Glasses"){
-            SceneManager.LoadScene("GlassesTable");
-        }
-        else if(workBenchName == "Clothes"){
-            SceneManager.LoadScene("ClothesTable");
-        }
+        switch(workBenchName){
+            case "Glasses":
+                SceneManager.LoadScene("GlassesTable");
+                break;
+            case "Clothes":
+                SceneManager.LoadScene("ClothesTable");
+                break;
+            default:
+                break;
+        }   
     }
 
 
     public void tableClicked(){
+        Time.timeScale = 1f;
         selectedMaterial = DataToStore.pickedMaterial;
-        if(selectedMaterial){
-            if (normalizedProductName == "tshirt"){
+        if (normalizedProductName == "tshirt"){
                 Product = "Clothes";
-            }
+        }
+        switch(selectedMaterial){
+            case true:
+                if (gameObject.name == Product)
+                {
+                    Debug.Log("Table with " + this.gameObject.name);
+                    changeScene(this.gameObject.name);
+                }
+                else
+                {
+                    workBenchWarning.SetActive(true);
+                    Debug.Log("Not valid operation !!");
+                }
+            break;
+            case false:
+                if (gameObject.name == Product)
+                {
+                    //Debug.Log("Table with " + this.gameObject.name);
+                    //changeScene(this.gameObject.name);
+                    materialWarning.SetActive(true);
+                }
+                else
+                {
+                    materialWarning.SetActive(true);
+                    //workBenchWarning.SetActive(true);
+                    //Debug.Log("Not valid operation !!");
+                }
+            break;
+        }
+
+        /*
+        if(selectedMaterial){
+            
                 //Debug.Log("Produkt je: " + Product + " Workbench je: "+ gameObject.name);
             if (gameObject.name == Product)
             {
@@ -80,6 +116,7 @@ public class SelectTable : MonoBehaviour
                 //Debug.Log("Not valid operation !!");
             }
         }
+        */
     }
 }
 

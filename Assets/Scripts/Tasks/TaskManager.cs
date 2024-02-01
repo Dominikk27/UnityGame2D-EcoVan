@@ -28,6 +28,8 @@ public class TaskManager : MonoBehaviour
 
     /*===============[ Start INIT ]===============*/
     void Start(){
+        Time.timeScale = 1f;
+        tutorial_played = DataToStore.tutorial_played;
         produkty = new List<ProduktInfo>();
         materialy = new List<MaterialTyp>();
         FactorySceneName = "Factory_scene";

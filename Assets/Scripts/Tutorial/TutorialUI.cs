@@ -71,6 +71,7 @@ public class TutorialUI : MonoBehaviour
     public void SkipTutorial(){
         DataToStore.tutorial_played = true;
         SceneManager.LoadScene("City_Scene");
+        Time.timeScale = 1f;
     }
 
 
