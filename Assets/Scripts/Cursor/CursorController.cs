@@ -6,16 +6,14 @@ public class CursorController : MonoBehaviour
 {
     public Texture2D cursor;
     public Texture2D cursorClicked;
-
-    private CursorControls controls;
-
     public Vector2 offset = new Vector2(0f, -5f);
+    private CursorControls controls;
    
    
    private void Awake(){
     controls = new CursorControls();
     ChangeCursor(cursor);
-    Cursor.lockState = CursorLockMode.None;
+    Cursor.lockState = CursorLockMode.Confined;
    }
 
    private void OnEnable(){
@@ -44,7 +42,7 @@ public class CursorController : MonoBehaviour
     BoxCollider2D cursorCollider = GetComponent<BoxCollider2D>();
     if (cursorCollider != null)
     {
-        cursorCollider.size = new Vector2(5f, 5f);
+     cursorCollider.size = new Vector2(5f, 5f);
     }
    }
 }

@@ -16,8 +16,7 @@ public class MainMenu : MonoBehaviour
         if (!tutorial_played){
             DataToStore.tutorialScene = 1;
             SceneManager.LoadSceneAsync("City_Scene_Tutorial");
-        } 
-        else{
+        } else {
             SceneManager.LoadSceneAsync("City_Scene");
         }
         
@@ -27,7 +26,6 @@ public class MainMenu : MonoBehaviour
     {
         
     }
-    
     
     void Start()
     {

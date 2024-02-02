@@ -65,31 +65,25 @@ public class NPC_Controller : MonoBehaviour
             arrivedToStore();
         }
     }
-
-
-
-
-
-    public void arrivedToStore(){
+    
+    
+    public void arrivedToStore()
+    {
         tutorial_played = DataToStore.tutorial_played;
         Debug.Log("Tutorial_PLAYED: " + tutorial_played);
-        if(!tutorial_played){
+
+        inStore = true;
+        sManager.enableSpawn(false);
+        rigidbody.velocity = Vector2.zero;
+        taskManager.createTaskCard(gameObject.name);
+
+        if (!tutorial_played)
+        {
             DataToStore.tutorialScene = 2;
             tutorialUI.NPC_InStoreTutorial();
-            inStore = true;
-            sManager.enableSpawn(false);
-            rigidbody.velocity = Vector2.zero;
-            taskManager.createTaskCard(gameObject.name);
-        }
-        else{
-            inStore = true;
-            sManager.enableSpawn(false);
-            rigidbody.velocity = Vector2.zero;
-            taskManager.createTaskCard(gameObject.name);
         }
     }
-
-
+    
     public void LeaveStore(){
       Debug.Log("Leave Store!");
       inStore = false;

@@ -150,31 +150,25 @@ public class SelectMaterial : MonoBehaviour
         string normalizedProductMaterial = productMaterial.ToLower();
         string normalizedPickedMaterial = currentSprite.name.ToLower();
 
-        //Debug.Log("productMaterial: "+ normalizedProductMaterial + " Sprite: " + normalizedSpriteName);
+        MaterialStatus.enabled = true;
+        DataToStore.pickedMaterial = true;
+        DataToStore.pickedMaterial_name = normalizedPickedMaterial;
+        materialSelected = DataToStore.pickedMaterial;
+        DataToStore.selectedMaterial_index = currentIndex;
+        
+        
         if(normalizedProductMaterial != normalizedPickedMaterial){
             //Debug.Log("NonCorrect");
             MaterialStatus.sprite = noncorrectMaterial;
-            MaterialStatus.enabled = true;
-            DataToStore.pickedMaterial = true;
-            DataToStore.pickedMaterial_name = normalizedPickedMaterial;
+            
             DataToStore.pickedCorrect_material = false;
-            materialSelected = DataToStore.pickedMaterial;
             DataToStore.selectedMaterial_index = currentIndex;
             materialPicked = true;
         }
         else{
             //Debug.Log("Correct");
             MaterialStatus.sprite = correctMaterial;
-            MaterialStatus.enabled = true;
-
-
-            DataToStore.pickedMaterial = true;
-            DataToStore.pickedMaterial_name = normalizedPickedMaterial;
             DataToStore.pickedCorrect_material = true;
-            materialSelected = DataToStore.pickedMaterial;
-            DataToStore.selectedMaterial_index = currentIndex;
-
-
         }
     }
 }

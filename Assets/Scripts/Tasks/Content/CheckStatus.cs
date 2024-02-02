@@ -65,39 +65,20 @@ public class CheckStatus : MonoBehaviour
 
     public void sellToCustomer(){
         tutorial_played = DataToStore.tutorial_played;
-        switch(tutorial_played){
-            case true:
-                if(!correctMaterial){
-                    getCurrentMoney = DataToStore.currentMoney;
-                    payoutMoney = DataToStore.payout;
-                    payoutMoney = payoutMoney / 2;
-                    DataToStore.currentMoney = getCurrentMoney + payoutMoney;
-                    SceneManager.LoadScene("City_Scene");
-                }
-                else{
-                    getCurrentMoney = DataToStore.currentMoney;
-                    payoutMoney = DataToStore.payout;
-                    DataToStore.currentMoney = getCurrentMoney + payoutMoney;
-                    SceneManager.LoadScene("City_Scene");
-                }
-            break;
-            case false:
-                DataToStore.tutorial_played = true;
-                if(!correctMaterial){
-                    getCurrentMoney = DataToStore.currentMoney;
-                    payoutMoney = DataToStore.payout;
-                    payoutMoney = payoutMoney / 2;
-                    DataToStore.currentMoney = getCurrentMoney + payoutMoney;
-                    SceneManager.LoadScene("City_Scene");
-                }
-                else{
-                    getCurrentMoney = DataToStore.currentMoney;
-                    payoutMoney = DataToStore.payout;
-                    DataToStore.currentMoney = getCurrentMoney + payoutMoney;
-                    SceneManager.LoadScene("City_Scene");
-                }
-            break;
+
+        if (!tutorial_played) {
+            DataToStore.tutorial_played = true;
         }
+        
+        getCurrentMoney = DataToStore.currentMoney;
+        payoutMoney = DataToStore.payout;
+                
+        if(!correctMaterial){
+            payoutMoney = payoutMoney / 2;
+        }
+                
+        DataToStore.currentMoney = getCurrentMoney + payoutMoney;
+        SceneManager.LoadScene("City_Scene");
     }
     public void previousScene(){
         SceneManager.LoadScene("Factory_Scene");

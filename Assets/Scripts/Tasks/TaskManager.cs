@@ -114,37 +114,25 @@ public class TaskManager : MonoBehaviour
 
     /*===============[ Accept Offer ]===============*/
     public void AcceptOffer(){
-        //Debug.Log(FactorySceneName);
+        string productToStore = productName;
+        string materialToStore = productMaterial;
+        int productPriceToStore = productPrice;
 
-        if(!tutorial_played){
-            string productToStore = productName;
-            string materialToStore = productMaterial;
-            int productPriceToStore = productPrice;
-            DataToStore.productFinished = false;
-            DataToStore.pickedMaterial = false;
+        DataToStore.productFinished = false;
+        DataToStore.pickedMaterial = false;
 
-            DataToStore.payout = productPriceToStore;
-            DataToStore.productName = productToStore;   
-            DataToStore.productMaterial = materialToStore; 
+        DataToStore.payout = productPriceToStore;
+        DataToStore.productName = productToStore;
+        DataToStore.productMaterial = materialToStore;
+
+        if (!tutorial_played)
+        {
             SceneManager.LoadScene("Factory_Scene_Tutorial");
-            
-            Destroy(gameObject);
-        }
-        else{
-            string productToStore = productName;
-            string materialToStore = productMaterial;
-            int productPriceToStore = productPrice;
-            DataToStore.productFinished = false;
-            DataToStore.pickedMaterial = false;
-
-            DataToStore.payout = productPriceToStore;
-            DataToStore.productName = productToStore;   
-            DataToStore.productMaterial = materialToStore; 
+        } else {
             SceneManager.LoadScene(FactorySceneName);
-            
-            Destroy(gameObject);
         }
 
+        Destroy(gameObject);
     }
 
 }

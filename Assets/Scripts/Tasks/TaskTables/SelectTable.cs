@@ -72,15 +72,15 @@ public class SelectTable : MonoBehaviour
                 }
             break;
             case false:
+                materialWarning.SetActive(true);
+                
                 if (gameObject.name == Product)
                 {
                     //Debug.Log("Table with " + this.gameObject.name);
                     //changeScene(this.gameObject.name);
-                    materialWarning.SetActive(true);
                 }
                 else
                 {
-                    materialWarning.SetActive(true);
                     //workBenchWarning.SetActive(true);
                     //Debug.Log("Not valid operation !!");
                 }

@@ -48,48 +48,37 @@ public class DragCrafting : MonoBehaviour
     {
         string thisGameObjectName = GetObjectName(gameObject);
         string collisionGameobjectName = GetObjectName(collision.gameObject);
-
-        //Debug.Log("ObjName: " + thisGameObjectName);
-        //Debug.Log("CollName: " + collisionGameobjectName);
-
+        
         if (mouseButtonReleased && thisGameObjectName == "glasses" && collisionGameobjectName == "frame")
         {
-            Instantiate(Resources.Load("sunglasses_Object"), transform.position, Quaternion.identity);
-            mouseButtonReleased = false;
-            Destroy(collision.gameObject);
-            Destroy(gameObject);
+            manipulateGameObject(collision, "sunglasses_Object", false);
         }
         else if (mouseButtonReleased && thisGameObjectName == "glasses" && collisionGameobjectName == "fullframe")
         {
-            Instantiate(Resources.Load("glassesProduct_Object"), transform.position, Quaternion.identity);
-            mouseButtonReleased = false;
-            Destroy(collision.gameObject);
-            Destroy(gameObject);
-            if(checkProduct != null){
-                checkProduct.finishProduct(true);
-            }
+            manipulateGameObject(collision, "glassesProduct_Object", true);
         }
-
         else if (mouseButtonReleased && thisGameObjectName == "3part" && collisionGameobjectName == "frame")
         {
-            Instantiate(Resources.Load("fullframe_Object"), transform.position, Quaternion.identity);
-            mouseButtonReleased = false;
-            Destroy(collision.gameObject);
-            Destroy(gameObject);
+            manipulateGameObject(collision, "fullframe_Object", false);
         }
-
         else if (mouseButtonReleased && thisGameObjectName == "3part" && collisionGameobjectName == "sunglasses")
         {
-            Instantiate(Resources.Load("glassesProduct_Object"), transform.position, Quaternion.identity);
-            mouseButtonReleased = false;
-            Destroy(collision.gameObject);
-            Destroy(gameObject);
-            if(checkProduct != null){
-                checkProduct.finishProduct(true);
-            }
-
+            manipulateGameObject(collision, "glassesProduct_Object", true);
         }
     }
+
+    private void manipulateGameObject(Collider2D collision, string resourceName, bool checkProductStatement = false)
+    {
+        Instantiate(Resources.Load(resourceName), transform.position, Quaternion.identity);
+        mouseButtonReleased = false;
+        Destroy(collision.gameObject);
+        Destroy(gameObject);
+        
+        if(checkProductStatement && checkProduct != null){
+            checkProduct.finishProduct(true);
+        }
+    }
+
 
     private string GetObjectName(GameObject obj)
     {

@@ -17,11 +17,7 @@ public class LineController : MonoBehaviour
     public GameObject Points;
     private GameObject materialObj;
     private GameObject path;
-
-
-
-
-
+    
     void Awake()
     {
         lr = GetComponent<LineRenderer>(); //Get component LineRender
@@ -44,21 +40,14 @@ public class LineController : MonoBehaviour
     }
 
     /*===============[ Draw Line ]===============*/
-    private void CreateLine(Vector3 finalPointPosition)
-    {
+    private void CreateLine(Vector3 finalPointPosition) {
         if (!pointPositions.Contains(finalPointPosition))
         {
-            pointPositions.Add(finalPointPosition);
-            lastPointPosition = finalPointPosition;
-            lr.enabled = true;
-            SetupLine();
+            AddPointAndSetupLine(finalPointPosition);
         }
-        else if (pointPositions.Count > 1 && pointPositions[0] == finalPointPosition)
+        else if (IsReturningToStartingPoint(finalPointPosition))
         {
-            pointPositions.Add(finalPointPosition);
-            //lastPointPosition = finalPointPosition;
-            lr.enabled = true;
-            SetupLine();
+            AddPointAndSetupLine(finalPointPosition);
             StartCoroutine(MoveTo(lastPointPosition));
             Debug.Log("You've reached the starting point again!");
             _finishClothes();
@@ -68,6 +57,18 @@ public class LineController : MonoBehaviour
             Debug.Log("This Point has been used Yet!");
         }
     }
+
+    private void AddPointAndSetupLine(Vector3 position) {
+        pointPositions.Add(position);
+        lastPointPosition = position;
+        lr.enabled = true;
+        SetupLine();
+    }
+
+    private bool IsReturningToStartingPoint(Vector3 position) {
+        return pointPositions.Count > 1 && pointPositions[0] == position;
+    }
+
 
 
     /*===============[ Setup Line ]===============*/
@@ -109,7 +110,6 @@ public class LineController : MonoBehaviour
         if (pointPositions.Count > 1)
         {
             pointPositions.Add(transform.position);
-
             StartCoroutine(MoveTo(lastPointPosition));
         }
         else
