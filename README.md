@@ -6,9 +6,22 @@ The game include 2 main tasks
 - Create galsses from recycled materials
 - Create T-Shirts from recycled materials
 
+<p>
+    <img width="500px" src="./Images/Def.png" />
+    <img width="500px" src="./Images/Order.png" />
+    <img width="500px" src="./Images/VanIn.png" />
+</p>
+
 # ✨ Game Features
 - Money System (Earn money by completing tasks)
 - Tasks for Cerate products (Glasses / T-Shirt)
+
+<p>
+    <img width="500px" src="./Images/ImageGlassesTask1.png" />
+    <img width="500px" src="./Images/ImageGlassesTask2.png" />
+    <img width="500px" src="./Images/ImageTshirtTask.png" />
+</p>
+
 
 📝 Planned goal: Grow your eco-business by unlocking new materials, upgrading your workshop, and expanding your product line.
 
